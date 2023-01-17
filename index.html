@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Manrope"
+    />
+
+    <title>Frontend Mentor | Advice generator app</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      :root {
+        --light-cyan: hsl(193, 38%, 86%);
+        --neon-green: hsl(150, 100%, 66%);
+        --neon-green: hsl(150, 99%, 52%);
+
+        --grayish-blue: hsl(217, 19%, 38%);
+        --dark-grayish-blue: hsl(217, 19%, 24%);
+        --dark-blue: hsl(218, 23%, 16%);
+
+        --font-size: 28px;
+        --font-family: "Manrope";
+        --font-weight: 800;
+      }
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: var(--dark-blue);
+        padding: 15px;
+        font-family: var(--font-family);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+      }
+      a {
+        text-decoration: none;
+        color: var(--light-cyan);
+      }
+
+      main .advice-container {
+        background-color: var(--dark-grayish-blue);
+        padding-top: 35px;
+        padding-bottom: 30px;
+        border-radius: 8px;
+        position: relative;
+        width: 350px;
+        text-align: center;
+      }
+
+      header {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        font-size: 18px;
+        color: var(--neon-green);
+      }
+
+      header .title {
+        margin-right: 10px;
+      }
+
+      .advice {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        font-size: 28px;
+        color: var(--light-cyan);
+      }
+
+      .pattern-devider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .dice {
+        background-color: var(--neon-green);
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        position: absolute;
+        margin-left: 41.5%;
+      }
+
+      .dice:hover {
+        cursor: pointer;
+      }
+
+      .dice:active {
+        box-shadow: 0px 0px 20px 3px var(--neon-green);
+        transition: 0.2s ease-in-out;
+      }
+
+      .attribution {
+        position: absolute;
+        margin-top: 800px;
+        color: var(--light-cyan);
+      }
+      .names {
+        color: var(--light-cyan);
+      }
+
+      /*Media query for screens greater than 550px (desktop screens)*/
+      @media only screen and (min-width: 550px) {
+        main .advice-container {
+          background-color: var(--dark-grayish-blue);
+          padding-top: 35px;
+          padding-bottom: 30px;
+          border-radius: 8px;
+          position: relative;
+          width: 450px;
+        }
+
+        .dice {
+          background-color: var(--neon-green);
+          width: 60px;
+          height: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          position: absolute;
+          margin-left: 43.5%;
+        }
+      }
+
+      /*Media query for screens less than 356px*/
+      @media only screen and (max-width: 355px) {
+        main .advice-container {
+          background-color: var(--dark-grayish-blue);
+          padding-top: 35px;
+          padding-bottom: 30px;
+          border-radius: 8px;
+          position: relative;
+          width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="advice-container">
+        <header>
+          <h4 class="title">Advice</h4>
+          <span>#</span
+          ><span class="advice-number" id="advice-number"></span>
+        </header>
+
+        <div class="advice">
+          <p id="qoute">
+          </p>
+        </div>
+
+        <div class="pattern-devider">
+          <svg
+            class="pattern"
+            width="295"
+            height="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g fill="none" fill-rule="evenodd">
+              <path fill="#4F5D74" d="M0 8h122v1H0zM173 8h122v1H173z" />
+              <g transform="translate(138)" fill="#CEE3E9">
+                <rect width="6" height="16" rx="3" />
+                <rect x="14" width="6" height="16" rx="3" />
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="dice">
+          <svg
+            id="svg-btn"
+            width="24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"
+              fill="#202733"
+            />
+          </svg>
+        </div>
+      </div>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a
+        class="names"
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Tinotenda Jecha</a>.
+    </div>
+
+    <script>
+
+      getRandomQoute();
+
+      const btn = document.getElementById("svg-btn");
+      const qoute = document.getElementById("qoute");
+      const qouteNumber = document.getElementById("advice-number");
+
+      
+
+
+      btn.addEventListener("click", getRandomQoute);
+
+      async function getRandomQoute() {
+        await fetch("https://api.adviceslip.com/advice")
+          .then((response) => response.json())
+          .then((data) => {
+            qoute.innerHTML = data.slip.advice;
+            qouteNumber.innerHTML = data.slip.id;
+          });
+      }
+    </script>
+  </body>
+</html>
